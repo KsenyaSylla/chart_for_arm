@@ -1,5 +1,13 @@
 <script setup>
 import { ref } from 'vue'
+import { connect } from "nats.ws";
+// shim the websocket library
+globalThis.WebSocket = require("websocket").w3cwebsocket;
+//connect = require("nats.ws");
+
+// write some code that runs on the server
+
+// write some code that runs
 
 const testData = [
   {
@@ -35,9 +43,9 @@ const data = ref(testData)
       например-->
     <article class="dialogSum">
       <template v-for="item in data" :key="item.label">
-        <div class="sumTitle">sumTitle</div>
-        <div class="absolutSum">absoluteSum</div>
-        <div class="relativeSum">relativeSum</div>
+        <div class="sumTitle">{{ item.label }}</div>
+        <div class="absolutSum">{{ item.absolut }}</div>
+        <div class="relativeSum">{{ item.relative }}</div>
       </template>
     </article>
   </div>

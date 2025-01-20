@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "chart.js": "^4.4.3",
+    "nats.ws": "^1.29.0",
     "pinia": "^2.1.7",
     "vue": "^3.4.31",
     "vue-chartjs": "^5.3.1",
