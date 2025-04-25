@@ -1,0 +1,47 @@
+{   "QUEEN":[
+    {"a-night-at-the-opera":{"all-chats": {"label":"Обработанных ботом","absolute":37202,"relative":33.1},"chats-processed":{"label":"Обработанных ботом и оператором","absolute":20238,"relative":18.01},"chats-unassigned":{"label":"Потерянных на операторе","absolute":371,"relative":0.33},"chats-lost-by-operator":{"label":"Определено тематик","absolute":46402,"relative":24.16}}},
+    {"the-game":{"all-chats":{"label":"Все диалоги","absolute":"56","relative":"95%"},"chats-processed":{"label":"Диалоги, обработанные ботом и оператором","absolute":"34","relative":"15%"},"chats-unassigned":{"label":"Диалоги, неназначенные оператору","absolute":"4","relative":"1%"},"chats-lost-by-operator":{"label":"Диалоги, пропущенные оператором","absolute":"1","relative":"0.05%"}}}
+],
+    "WHERE_IS_MY_DATA": [
+        {
+            "label": "Обработанных ботом",
+            "absolute": 37202,
+            "relative": 33.1
+        },
+        {
+            "label": "Обработанных ботом и оператором",
+            "absolute": 20238,
+            "relative": 18.01
+        },
+        {
+            "label": "Потерянных на операторе",
+            "absolute": 371,
+            "relative": 0.33
+        },
+        {
+            "label": "Определено тематик",
+            "absolute": 46402,
+            "relative": 24.16
+        }
+    ],
+    "robot": {
+        "label": "Обработанных ботом",
+        "absolute": 37202,
+        "relative": 33.1
+    },
+    "both": {
+        "label": "Обработанных ботом и оператором",
+        "absolute": 20238,
+        "relative": 18.01
+    },
+    "lost": {
+        "label": "Потерянных на операторе",
+        "absolute": 371,
+        "relative": 0.33
+    },
+    "topics": {
+        "label": "Определено тематик",
+        "absolute": 46402,
+        "relative": 24.16
+    }
+}

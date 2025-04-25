@@ -1,0 +1,134 @@
+Скрипт для подключения к натс и обработки данных
+/* 
+async function read(watch) {
+    for await (const e of watch) {// прилетают все ключи, все проекты e - это и есть проект
+        console.log("update", e);
+        if (e.key == accessNATS.project) {
+            if (e.operation == "DEL") {
+                deletedValue.value = true
+                inlvalidProject.value = false;
+                invalidJSON.value = false;
+            } else {
+                inlvalidProject.value = false;
+                deletedValue.value = false;
+                const sc = StringCodec();//любые строки для обработки ошибок в JSON
+                let s = sc.decode(e.value);
+                let resievedData;
+                try {
+                    invalidJSON.value = false;
+                    resievedData = JSON.parse(s);
+                    resievedData = resievedData[accessNATS.project];
+                    //console.log(resievedData);
+                    if (dataFromNATS.value.length < countDataToShow) {
+                        for (let key in resievedData) {
+                            dataFromNATS.value.push(resievedData[key]);
+                        }
+                    }
+                    console.log(dataFromNATS.value);
+                    dataFromNATS.value.forEach((item) => {
+                        for (let key in resievedData) {
+                            if (item.label == resievedData[key].label) {
+                                item.absolute = resievedData[key].absolute;
+                                item.relative = resievedData[key].relative;
+                            };
+                        }
+                    });
+                    console.log(!inlvalidProject.value && !invalidJSON.value && !deletedValue.value && !cannotConnect.value && !generalError.value);
+                } catch (e1) {
+                    invalidJSON.value = true;
+                }
+            }
+        }
+    }
+}
+
+async function start() {
+    try {
+        const nc = await connect({
+            servers: [accessNATS.URL],
+            user: accessNATS.user,
+            pass: accessNATS.pass,
+        });
+        const js = nc.jetstream();
+        const kv = await js.views.kv(accessNATS.organization, { history: 1 });
+        const watch = await kv.watch();
+        await read(watch);
+    } catch (err) {
+        if (err.name === "NatsError") {
+            generalError.value = false;
+            cannotConnect.value = true;
+            inlvalidProject.value = false;
+            deletedValue.value = false;
+            invalidJSON.value = false;
+        } else {
+            generalError.value = true;
+            cannotConnect.value = false;
+            inlvalidProject.value = false;
+            deletedValue.value = false;
+            invalidJSON.value = false;
+        }
+        setTimeout(start, reconnectDelay)
+    }
+}
+
+onMounted(() => {
+  start();
+}); */
+
+//import { FwbDropdown, FwbListGroup, FwbListGroupItem } from 'flowbite-vue'
+<!--Dropdown menu Flowbite (библиотеки на 6.09 удалены)
+                                <fwb-dropdown text="Last 7 days" placement="top"
+                                    class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white">
+                                    <fwb-list-group>
+                                        <fwb-list-group-item>Yesterday</fwb-list-group-item>
+                                        <fwb-list-group-item>Today</fwb-list-group-item>
+                                        <fwb-list-group-item>Last 7 days</fwb-list-group-item>
+                                        <fwb-list-group-item>Last 30 days</fwb-list-group-item>
+                                    </fwb-list-group>
+                                </fwb-dropdown>
+                                -->
+
+<!-- Button 
+                                <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown"
+                                    data-dropdown-placement="bottom"
+                                    class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
+                                    type="button">
+                                    Last 7 days
+                                    <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+                                -->
+                                <!-- Dropdown menu 
+                                <div id="lastDaysdropdown"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownDefaultButton">
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
+                                                7 days</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
+                                                30 days</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
+                                                90 days</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                -->
