@@ -1,0 +1,39 @@
+установить NATS Server
+  apt-get install nats-server
+
+где лежит конфиг?
+  /etc/nats-server.conf 
+
+проверить статус NATS server
+  systemctl status nats-server
+
+запустить NATS Server
+  systemctl start nats-server
+
+установить nats-cli
+  curl -sf https://binaries.nats.dev/nats-io/natscli/nats@latest | sh
+
+получить инфо про сервер
+  ./nats -s localhost:4222 --user sys --password pass server info
+
+получить инфо про текущий аккаунт
+  ./nats -s localhost:4222 --user sys --password pass account info
+ 
+сохранить ключ
+  ./nats -s localhost:4222 --user user --password user kv put QUEEN a-night-at-the-opera '{"all-chats": { "label": "Обработанных ботом", "absolute": 37202, "relative": 33.1 },"chats-processed": { "label": "Обработанных ботом и оператором", "absolute": 20238, "relative": 18.01 }, "chats-unassigned": { "label": "Потерянных на операторе", "absolute": 371, "relative": 0.33 }, "chats-lost-by-operator": { "label": "Определено тематик", "absolute": 46402, "relative": 24.16 } }'
+
+получить данные по ключу
+  ./nats -s localhost:4222 --user user --password user kv get QUEEN a-night-at-the-opera --raw
+
+положить данные для графиков
+  ./nats -s localhost:4222 --user user --password user kv put QUEEN a-night-at-the-opera '{"a-night-at-the-opera":{ "all-chats": { "label": "Обработанных ботом", "absolute": 37202, "relative": 33.1, "forChart" : {"01 February": 6500, "02 February": 6418, "03 February": 6456,"04 February": 6526,"05 February": 7456} }, "chats-processed": { "label": "Обработанных ботом и оператором", "absolute": 20238, "relative": 18.01, "forChart" : {} }, "chats-unassigned": { "label": "Потерянных на операторе", "absolute": 371, "relative": 0.33, "forChart" : {} }, "chats-lost-by-operator": { "label": "Определено тематик", "absolute": 46402, "relative": 24.16, "forChart" : {} } },"the-game":{ "all-chats": { "label": "Все диалоги", "absolute": "56", "relative": "95", "forChart" : {} }, "chats-processed": { "label": "Диалоги, обработанные ботом и оператором", "absolute": "34", "relative": "15", "forChart" : {} }, "chats-unassigned": { "label": "Диалоги, неназначенные оператору", "absolute": "4", "relative": "1", "forChart" : {} }, "chats-lost-by-operator": { "label": "Диалоги, пропущенные оператором", "absolute": "1", "relative": "0.05", "forChart" : {} } },"the-game-plus":{ "all-chats": { "label": "Все диалоги", "absolute": "56", "relative": "95", "forChart" : {} }, "chats-processed": { "label": "Диалоги, обработанные ботом и оператором", "absolute": "34", "relative": "15", "forChart" : {} }, "chats-unassigned": { "label": "Диалоги, неназначенные оператору", "absolute": "4", "relative": "1", "forChart" : {} }, "chats-lost-by-operator": { "label": "Диалоги, пропущенные оператором", "absolute": "1", "relative": "0.05", "forChart" : {} } }}'
+
+
+тестовый сервер
+  ./nats -s  nats://test:testpassword2345@dev-nginx-int.optichattechdom.ru:4222 --user test --password 2345 account info
+
+./nats -s  nats://test:testpassword2345@dev-nginx-int.optichattechdom.ru:4222 --user test --password 2345 kv add QUEEN
+
+./nats -s  nats://test:testpassword2345@dev-nginx-int.optichattechdom.ru:4222 --user test --password 2345 kv put QUEEN a-night-at-the-opera '{"a-night-at-the-opera":{ "all-chats": { "label": "Обработанных ботом", "absolute": 37202, "relative": 33.1, "forChart" : {"01 February": 6500, "02 February": 6418, "03 February": 6456,"04 February": 6526,"05 February": 7456} }, "chats-processed": { "label": "Обработанных ботом и оператором", "absolute": 20238, "relative": 18.01, "forChart" : {} }, "chats-unassigned": { "label": "Потерянных на операторе", "absolute": 371, "relative": 0.33, "forChart" : {} }, "chats-lost-by-operator": { "label": "Определено тематик", "absolute": 46402, "relative": 24.16, "forChart" : {} } }'
+
+./nats -s  nats://test:testpassword2345@dev-nginx-int.optichattechdom.ru:4222 --user test --password 2345 kv get QUEEN a-night-at-the-opera --raw
